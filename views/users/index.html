@@ -1,0 +1,56 @@
+<form class="layui-form" action="" method="post">
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">ID</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name"  autocomplete="off" class="layui-input">
+      </div>
+      <button class="layui-btn" lay-submit lay-filter="search">查询</button>
+    </div>
+  </div>
+</form>
+<table class="layui-table" lay-data="{url:'/users/index', page:true, id:'table', method:'post', toolbar:'#hBtn'}" lay-filter="table">
+    <thead>
+      <tr>
+				<th lay-data="{field:'UserType'}">UserType</th> 
+				<th lay-data="{field:'UserQQ'}">UserQQ</th> 
+				<th lay-data="{field:'UserTotalScore'}">UserTotalScore</th> 
+				<th lay-data="{field:'DataFlag'}">DataFlag</th> 
+				<th lay-data="{field:'LoginPwd'}">LoginPwd</th> 
+				<th lay-data="{field:'UserName'}">UserName</th> 
+				<th lay-data="{field:'UserPhoto'}">UserPhoto</th> 
+				<th lay-data="{field:'UserEmail'}">UserEmail</th> 
+				<th lay-data="{field:'UserScore'}">UserScore</th> 
+				<th lay-data="{field:'LastIP'}">LastIP</th> 
+				<th lay-data="{field:'LastTime'}">LastTime</th> 
+				<th lay-data="{field:'UserFrom'}">UserFrom</th> 
+				<th lay-data="{field:'UserId'}">UserId</th> 
+				<th lay-data="{field:'UserStatus'}">UserStatus</th> 
+				<th lay-data="{field:'CreateTime'}">CreateTime</th> 
+				<th lay-data="{field:'UserMoney'}">UserMoney</th> 
+				<th lay-data="{field:'UserSex'}">UserSex</th> 
+				<th lay-data="{field:'TrueName'}">TrueName</th> 
+				<th lay-data="{field:'Brithday'}">Brithday</th> 
+				<th lay-data="{field:'LockMoney'}">LockMoney</th> 
+				<th lay-data="{field:'PayPwd'}">PayPwd</th> 
+				<th lay-data="{field:'True_name'}">True_name</th> 
+				<th lay-data="{field:'LoginSecret'}">LoginSecret</th> 
+				<th lay-data="{field:'UserPhone'}">UserPhone</th> 
+				<th lay-data="{field:'Table'}">Table</th> 
+				<th lay-data="{field:'LoginName'}">LoginName</th> 
+
+        <th lay-data="{field:'Opt', fixed: 'right', toolbar: '#toolbar'}">操作</th>
+      </tr>
+    </thead>
+</table>
+<script type="text/html" id="hBtn">
+    <div class="layui-btn-container">
+        <a href="/users" class="layui-btn layui-btn-sm" lay-event="add">添加</a>
+    </div>
+</script>
+  <script type="text/html" id="toolbar">
+    <a href="/users/<%d.Id%>" class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a href="users" class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="/static/js/users.js"></script> 
+
