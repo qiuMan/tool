@@ -19,10 +19,10 @@ func NewController(name string) *Controller {
 	return obj
 }
 
-func (this *Controller) ICk() bool {
+func (this *Controller) ICk() (bool, string) {
 	exits, _ := PathExists(this.Path)
 	fmt.Println(this.Path, exits)
-	return exits
+	return exits, this.Path
 }
 
 func (this *Controller) IRead() []string {
@@ -47,9 +47,4 @@ func (this *Controller) IWrite(values []string) {
 	}
 
 	file.WriteFile(this.Path, values)
-}
-
-func (this *Controller) IRm() {
-	file := NewFile()
-	file.Remove(this.Path)
 }

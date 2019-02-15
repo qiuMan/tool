@@ -2,10 +2,10 @@ package main
 
 import(
 	"tool/tool"
-	// "fmt"
+	"fmt"
 	"flag"
-	// "bufio"
-	// "os"
+	"bufio"
+	"os"
 )
 
 
@@ -22,11 +22,28 @@ func main() {
 	rmFile := *rmFile 
 	tool := tool.NewTool()
 	if mkFile != "" {
-		tool.MkFile(mkFile)
-	}
-
-	if rmFile != "" {
-		tool.RmFile(rmFile)
+		objs, files := tool.FileList(rmFile)
+		for _, file := range files {
+			fmt.Println(file)
+		}
+		tool.MkFile(objs, files)
+	} else if rmFile != "" {
+		objs, files := tool.FileList(rmFile)
+		for _, file := range files {
+			fmt.Println(file)
+		}
+		fmt.Printf("确定删除文件y/n：")
+		input := bufio.NewScanner(os.Stdin)//初始化一个扫表对象
+    	for input.Scan() {//扫描输入内容
+        	line := input.Text()//把输入内容转换为字符串
+			if line == "y" || line == "n" {
+				if line == "y" {
+					tool.RmFile(objs, files)
+				}    	
+				break
+			}
+			
+		}
 	}
 	
 } 

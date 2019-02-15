@@ -8,6 +8,6 @@ perfix=wst_
 tplPath=tpl/
 tplPerfix=.tpl
 
-path=d:/go/www/src/wstmart/
+path=
 
 filePerfix=.go

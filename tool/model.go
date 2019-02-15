@@ -20,10 +20,10 @@ func NewModel(name string) *Model {
 	return obj
 }
 
-func (this *Model) ICk() bool {
+func (this *Model) ICk() (bool, string) {
 	exits, _ := PathExists(this.Path)
 	fmt.Println(this.Path, exits)
-	return exits
+	return exits, this.Path
 }
 
 func (this *Model) IRead() []string {
@@ -71,7 +71,3 @@ func (this *Model) IWrite(values []string) {
 	file.WriteFile(this.Path, values)
 }
 
-func (this *Model) IRm() {
-	file := NewFile()
-	file.Remove(this.Path)
-}

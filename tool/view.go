@@ -2,7 +2,6 @@ package tool
 
 import(
 	"fmt"
-	"path/filepath"
 	"strings"
 )
 type View struct {
@@ -19,10 +18,10 @@ func NewView(name string, tpl string) *View {
 	return obj
 }
 
-func (this *View) ICk() bool {
+func (this *View) ICk() (bool, string) {
 	exits, _ := PathExists(this.Path)
 	fmt.Println(this.Path, exits)
-	return exits
+	return exits, this.Path
 }
 
 func (this *View) IRead() []string {
@@ -83,15 +82,4 @@ func (this *View) IWrite(values []string) {
 
 	file := NewFile()
 	file.WriteFile(this.Path, values)
-}
-
-func (this *View) IRm() {
-	file := NewFile()
-	if this.Tpl == "js" {
-		config := NewConfig()
-		this.Path, _ = config.MvcPath(this.Name, "js")
-	}
-	file.Remove(this.Path)
-	exPath := filepath.Dir(this.Path)//获取文件夹
-	file.Remove(exPath)
 }

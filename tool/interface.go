@@ -2,10 +2,9 @@ package tool
 
 
 type IFile interface {
-	ICk() bool
+	ICk() (bool, string)
 	IRead() []string
 	IWrite(values []string) 
-	IRm()
 }
 
 type Tool struct {
@@ -17,25 +16,21 @@ func NewTool() *Tool {
 	return obj
 }
 
-func (this *Tool) MkFile(str string) {
-	ifiles :=[]IFile{
-		NewModel(str),
-		NewView(str, "index"), 
-		NewView(str, "detail"),  
-		NewJs(str), 
-		NewController(str),
-	}
+func (this *Tool) MkFile(ifiles []IFile, paths []string) {
 	for _, ifile := range ifiles {
-		ck := ifile.ICk()
-		if ck == true {
-			continue
-		}
 		values := ifile.IRead()
 		ifile.IWrite(values)
 	}
 }
  
-func (this *Tool) RmFile(str string) {
+func (this *Tool) RmFile(ifile []IFile, paths []string) {
+	file := NewFile()
+	for _, path := range paths {
+		file.Remove(path)
+	}
+}
+
+func (this *Tool) FileList(str string) ([]IFile, []string) {
 	ifiles :=[]IFile{
 		NewModel(str),
 		NewView(str, "index"), 
@@ -43,10 +38,16 @@ func (this *Tool) RmFile(str string) {
 		NewJs(str), 
 		NewController(str),
 	}
+
+	paths := make([]string, 0)
+
 	for _, ifile := range ifiles {
-		ck := ifile.ICk()
+		ck, path := ifile.ICk()
 		if ck == true {
-			ifile.IRm()
+			paths = append(paths, path)
 		}
 	}
+
+	return ifiles, paths
+	
 }

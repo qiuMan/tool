@@ -17,10 +17,10 @@ func NewJs(name string) *Js {
 	return obj
 }
 
-func (this *Js) ICk() bool {
+func (this *Js) ICk() (bool, string) {
 	exits, _ := PathExists(this.Path)
 	fmt.Println(this.Path, exits)
-	return exits
+	return exits, this.Path
 }
 
 func (this *Js) IRead() []string {
@@ -50,9 +50,4 @@ func (this *Js) IWrite(values []string) {
 
 	file := NewFile()
 	file.WriteFile(this.Path, values)
-}
-
-func (this *Js) IRm() {
-	file := NewFile()
-	file.Remove(this.Path)
 }
